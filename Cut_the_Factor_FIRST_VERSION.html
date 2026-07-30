@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cut the Factor - Grade 8</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ffd6e7,#bde9ff);color:#263238}
+.wrap{max-width:1050px;margin:auto;padding:20px}
+.screen{display:none;background:#fffdf7;border-radius:30px;padding:30px;min-height:650px;box-shadow:0 12px 30px #0002}
+.active{display:block}
+h1{font-size:50px;color:#6c42d9;text-align:center;margin:8px}
+h2{text-align:center;color:#1683c7}
+h3{color:#f07832}
+.center{text-align:center}
+.hero{font-size:90px;text-align:center}
+.candy{font-size:70px;text-align:center}
+.card{background:white;border:3px solid #f0d48a;border-radius:22px;padding:22px;margin:16px 0}
+.formula{font-size:29px;font-weight:bold;text-align:center;background:#e5f8e8;border-radius:18px;padding:18px;margin:12px}
+.step{background:#f3efff;border-left:7px solid #7048df;border-radius:12px;padding:16px;margin:12px 0;line-height:1.6}
+button{border:0;border-radius:15px;padding:14px 23px;margin:7px;font-size:17px;font-weight:bold;cursor:pointer;background:#7048df;color:white;box-shadow:0 4px 0 #4d32a8}
+button:hover{transform:translateY(-2px)}
+.answer{display:block;width:90%;max-width:700px;margin:10px auto;background:#eef2ff;color:#222;border:3px solid #c8d2ff;box-shadow:none}
+.feedback{text-align:center;font-size:20px;font-weight:bold;min-height:32px}
+.score{position:fixed;right:15px;top:12px;background:#fff;border:3px solid #7048df;border-radius:15px;padding:10px 16px;font-weight:bold;z-index:20}
+.game{height:380px;background:linear-gradient(#a9e5ff,#d9f7c9);border:5px solid #72bce5;border-radius:25px;position:relative;overflow:hidden}
+.rope{position:absolute;top:25px;width:7px;height:155px;background:#996633;transition:.7s;transform-origin:top}
+.r1{left:25%}.r2{left:50%}.r3{left:75%}
+.cut{opacity:0;transform:rotate(75deg)}
+.gift{position:absolute;left:calc(50% - 30px);top:145px;font-size:60px;transition:.8s}
+.monster2{position:absolute;bottom:10px;left:calc(50% - 45px);font-size:80px}
+@media(max-width:650px){h1{font-size:36px}.screen{padding:18px}.formula{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="score">⭐ Score: <span id="score">0</span></div>
+<div class="wrap">
+
+<section id="home" class="screen active">
+<div class="hero">👾</div>
+<h1>✂️ CUT THE FACTOR!</h1>
+<h2>Factoring Perfect Square Trinomials</h2>
+<p class="center"><b>Grade 8 Mathematics • Number and Algebra</b></p>
+<div class="candy">🍬</div>
+<div class="card center">
+<h2>🎯 Your Mission</h2>
+<p>Help the monster reach the candy by solving the math challenges!</p>
+</div>
+<div class="center"><button onclick="go('objectives')">START GAME 🚀</button></div>
+</section>
+
+<section id="objectives" class="screen">
+<h2>🎯 LEARNING OBJECTIVES</h2>
+<div class="card">
+<p>After this lesson, you will be able to:</p>
+<p>⭐ Identify if a problem is a perfect square trinomial.</p>
+<p>⭐ Follow the step-by-step procedure in getting the factors.</p>
+<p>⭐ Completely factor a perfect square trinomial.</p>
+</div>
+<div class="center"><button onclick="go('lesson')">LET'S LEARN! 📚</button></div>
+</section>
+
+<section id="lesson" class="screen">
+<h2>📚 MINI LESSON</h2>
+<div class="card">
+<h3>What is a Perfect Square Trinomial?</h3>
+<p>A perfect square trinomial can be factored into the square of a binomial.</p>
+<div class="formula">a² + 2ab + b² = (a + b)²</div>
+<div class="formula">a² − 2ab + b² = (a − b)²</div>
+</div>
+<div class="card">
+<h2>Example: x² + 6x + 9</h2>
+<div class="step"><b>Step 1 – Label each term:</b><br>x² = (a), 6x = (b), 9 = (c)</div>
+<div class="step"><b>Step 2 – Check the first and last terms:</b><br>x² is the square of x. 9 is the square of 3. Both are perfect squares.</div>
+<div class="step"><b>Step 3 – Get the square roots:</b><br>√x² = x and √9 = 3</div>
+<div class="step"><b>Step 4 – Double the product:</b><br>2(x)(3) = 6x. This matches the middle term.</div>
+<div class="step"><b>Step 5 – Factor:</b><br><strong>x² + 6x + 9 = (x + 3)²</strong></div>
+</div>
+<div class="center"><button onclick="go('activity')">PRACTICE 🧩</button></div>
+</section>
+
+<section id="activity" class="screen">
+<h2>🧩 MATCHING ACTIVITY</h2>
+<div class="card">
+<h3>Given: x² + 10x + 25</h3>
+<p><b>A:</b> Square root of the first term</p>
+<button class="answer" onclick="act(this,true,'a1')">x</button>
+<button class="answer" onclick="act(this,false,'a1')">2x</button>
+<button class="answer" onclick="act(this,false,'a1')">3x</button>
+<div id="a1" class="feedback"></div>
+<hr>
+<p><b>B:</b> Product of (a) and (c)</p>
+<button class="answer" onclick="act(this,true,'a2')">5x</button>
+<button class="answer" onclick="act(this,false,'a2')">4x</button>
+<button class="answer" onclick="act(this,false,'a2')">6x</button>
+<div id="a2" class="feedback"></div>
+<hr>
+<p><b>C:</b> Square root of the last term</p>
+<button class="answer" onclick="act(this,false,'a3')">4</button>
+<button class="answer" onclick="act(this,true,'a3')">5</button>
+<button class="answer" onclick="act(this,false,'a3')">6</button>
+<div id="a3" class="feedback"></div>
+</div>
+<div class="center"><button onclick="go('game')">CUT THE ROPE 🎮</button></div>
+</section>
+
+<section id="game" class="screen">
+<h2>🍬 CUT THE FACTOR!</h2>
+<p class="center">Answer correctly to cut the correct rope!</p>
+<div class="game">
+<div id="r1" class="rope r1"></div><div id="r2" class="rope r2"></div><div id="r3" class="rope r3"></div>
+<div id="gift" class="gift">🍬</div><div class="monster2">👾</div>
+</div>
+<div id="question" class="card"></div>
+<div id="gf" class="feedback"></div>
+</section>
+
+<section id="final" class="screen">
+<h2>🏆 FINAL CHALLENGE</h2>
+<div id="fq" class="card"></div>
+<div id="ff" class="feedback"></div>
+</section>
+
+<section id="result" class="screen">
+<div class="hero">👾🍬</div>
+<h1>🎉 YOU DID IT!</h1>
+<h1><span id="finalScore">0</span>/6</h1>
+<div class="card center"><h2 id="resultTitle"></h2><p id="resultMsg"></p></div>
+<div class="center"><button onclick="restart()">🔄 PLAY AGAIN</button><button onclick="go('home')">🏠 HOME</button></div>
+</section>
+
+</div>
+<script>
+var score=0,level=0,fi=0;
+var game=[
+["Which is a perfect square trinomial?",["x² + 5x + 6","x² + 6x + 9","x² + 7x + 10"],1],
+["Factor x² + 8x + 16.",["(x + 2)²","(x + 4)²","(x + 8)²"],1],
+["Factor x² − 10x + 25.",["(x + 5)²","(x − 5)²","(x − 25)²"],1]];
+var finalQ=[
+["Factor x² + 12x + 36.",["(x + 4)²","(x + 6)²","(x + 12)²"],1],
+["Factor x² − 14x + 49.",["(x − 7)²","(x − 14)²","(x + 7)²"],0],
+["Factor x² + 16x + 64.",["(x + 6)²","(x + 8)²","(x + 16)²"],1]];
+
+function go(id){
+document.querySelectorAll(".screen").forEach(function(x){x.classList.remove("active")});
+document.getElementById(id).classList.add("active");
+if(id=="game")showGame();
+if(id=="final"){fi=0;showFinal()}
+window.scrollTo(0,0);
+}
+function act(b,ok,id){
+document.getElementById(id).textContent=ok?"✅ Correct!":"❌ Try again!";
+b.style.background=ok?"#58c878":"#ed6868";
+}
+function showGame(){
+var q=game[level];
+document.getElementById("question").innerHTML="<h2>LEVEL "+(level+1)+"</h2><h3>"+q[0]+"</h3>"+
+q[1].map(function(x,i){return "<button class='answer' onclick='answerGame("+i+")'>"+String.fromCharCode(65+i)+". "+x+"</button>"}).join("");
+}
+function answerGame(i){
+var q=game[level];
+if(i==q[2]){
+score++;document.getElementById("score").textContent=score;
+document.getElementById("gf").textContent="🎉 CORRECT! ✂️ ROPE CUT!";
+document.getElementById("r"+(level+1)).classList.add("cut");
+document.getElementById("gift").style.top=(180+level*40)+"px";
+level++;
+if(level<3)setTimeout(showGame,800);else setTimeout(function(){go("final")},900);
+}else document.getElementById("gf").textContent="❌ Try again! Look at the pattern.";
+}
+function showFinal(){
+var q=finalQ[fi];
+document.getElementById("fq").innerHTML="<h3>Challenge "+(fi+1)+" of 3</h3><h2>"+q[0]+"</h2>"+
+q[1].map(function(x,i){return "<button class='answer' onclick='answerFinal("+i+")'>"+String.fromCharCode(65+i)+". "+x+"</button>"}).join("");
+}
+function answerFinal(i){
+if(i==finalQ[fi][2]){
+score++;document.getElementById("score").textContent=score;
+document.getElementById("ff").textContent="🎉 Correct!";
+fi++;
+if(fi<3)setTimeout(showFinal,700);else setTimeout(showResult,800);
+}else document.getElementById("ff").textContent="❌ Try again!";
+}
+function showResult(){
+document.getElementById("finalScore").textContent=score;
+if(score==6){document.getElementById("resultTitle").textContent="🌟 MASTER FACTORER!";document.getElementById("resultMsg").textContent="Excellent! You mastered perfect square trinomials!";}
+else if(score>=4){document.getElementById("resultTitle").textContent="⭐ GREAT JOB!";document.getElementById("resultMsg").textContent="Very good! Review the steps and try again.";}
+else{document.getElementById("resultTitle").textContent="💪 KEEP PRACTICING!";document.getElementById("resultMsg").textContent="Review the lesson and try the game again.";}
+go("result");
+}
+function restart(){
+score=0;level=0;fi=0;document.getElementById("score").textContent=0;
+document.querySelectorAll(".rope").forEach(function(x){x.classList.remove("cut")});
+document.getElementById("gift").style.top="145px";go("home");
+}
+</script>
+</body>
+</html>
